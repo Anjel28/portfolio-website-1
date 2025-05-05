@@ -1,0 +1,20 @@
+import React from 'react';
+import { Container, Typography, Box } from '@mui/material';
+
+const Home = () => {
+  return (
+    <Container>
+      <Box my={4}>
+        <Typography variant="h2" gutterBottom>
+          Welcome to My Portfolio
+        </Typography>
+        <Typography variant="body1">
+          This is a showcase of my work and projects. Navigate to the Projects
+          section to see my work or add new projects.
+        </Typography>
+      </Box>
+    </Container>
+  );
+};
+
+export default Home;

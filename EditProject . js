@@ -1,0 +1,56 @@
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getProject, updateProject } from '../services/api';
+import ProjectForm from '../components/ProjectForm';
+
+const EditProject = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [project, setProject] = useState({
+    title: '',
+    description: '',
+    technologies: '',
+    imageUrl: '',
+    projectUrl: ''
+  });
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const data = await getProject(id);
+        setProject(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchProject();
+  }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProject(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await updateProject(id, project);
+      navigate('/projects');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Edit Project</h2>
+      <ProjectForm 
+        project={project} 
+        handleChange={handleChange} 
+        handleSubmit={handleSubmit} 
+      />
+    </div>
+  );
+};
+
+export default EditProject;

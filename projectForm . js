@@ -1,0 +1,56 @@
+import React from 'react';
+import { TextField, Button, Stack } from '@mui/material';
+
+const ProjectForm = ({ project, handleSubmit, handleChange }) => {
+  return (
+    <form onSubmit={handleSubmit}>
+      <Stack spacing={2}>
+        <TextField
+          label="Title"
+          name="title"
+          value={project.title}
+          onChange={handleChange}
+          required
+          fullWidth
+        />
+        <TextField
+          label="Description"
+          name="description"
+          value={project.description}
+          onChange={handleChange}
+          required
+          multiline
+          rows={4}
+          fullWidth
+        />
+        <TextField
+          label="Technologies"
+          name="technologies"
+          value={project.technologies}
+          onChange={handleChange}
+          required
+          fullWidth
+        />
+        <TextField
+          label="Image URL"
+          name="imageUrl"
+          value={project.imageUrl}
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField
+          label="Project URL"
+          name="projectUrl"
+          value={project.projectUrl}
+          onChange={handleChange}
+          fullWidth
+        />
+        <Button type="submit" variant="contained" color="primary">
+          Save Project
+        </Button>
+      </Stack>
+    </form>
+  );
+};
+
+export default ProjectForm;
